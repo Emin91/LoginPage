@@ -16,6 +16,21 @@ const {width: WIDTH} = Dimensions.get('window')
 
 export default class App extends Component {
 
+  constructor() {
+    super()
+    this.state = {
+      showPass: true,
+      press: true
+    }
+  }
+  
+  showPass = () => {
+    if (this.state.press == false) {
+      this.setState({ showPass: false, press: true})
+    } else {
+      this.setState({ showPass: true, press: false})
+    }
+  }
   render() {
     return (
       <ImageBackground source={backgroundImage} style={styles.backgroundView}>
@@ -41,15 +56,20 @@ export default class App extends Component {
                   style={styles.input}
                     placeholder={'Password'}
                     selectionColor={'#00d8ff'}
-                    secureTextEntry={true}
+                    secureTextEntry={this.state.showPass}
                     placeholderTextColor={'rgba(255, 255, 255, 0.4)'}
                     underlineColorAndroid='transparent'/>
-              <TouchableOpacity style={styles.btnShowPass}>
+              <TouchableOpacity style={styles.btnShowPass}
+                   onPress={this.showPass.bind(this)}>
                  <Image
                     style={styles.btnShowPassIcon}
-                    source={require('./images/show-password.png')}/>
+                    source={this.state.press == false ? require('./images/eye-closed.png') : require('./images/eye.png')}/>
              </TouchableOpacity>
           </View>
+          <TouchableOpacity 
+              style={styles.btnLogin}>
+              <Text style={styles.btnLoginText}>Login</Text>
+          </TouchableOpacity>
       </ImageBackground>
     );
   }
@@ -86,7 +106,6 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: '100',
     paddingLeft: 65,
-    padding: 15,
     opacity: 0.6,
     color: '#00d8ff', 
     backgroundColor: '#424242',
@@ -102,12 +121,28 @@ const styles = StyleSheet.create({
   },
   btnShowPass: {
     position: 'absolute',
-    top: 10,
+    top: 12,
     right: 20,
   },
   btnShowPassIcon: {
     width: 30,
     height: 30,
+  },
+  btnLogin: {
+    width: WIDTH - 30,
+    height: 45,
+    borderRadius: 25,
+    backgroundColor: '#00d8ff',
+    justifyContent: 'center',
+    marginTop: 50,
+    borderColor: '#02b4d4',
+    borderWidth: 3,
+  },
+
+  btnLoginText: {
+    color: 'white',
+    fontSize: 16,
+    textAlign: 'center'
   },
 });
 
