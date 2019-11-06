@@ -22,12 +22,24 @@ export default class App extends Component {
               <Image source={logo} style={styles.logo}/>
               <Text style={styles.logoText}>LOGIN PAGE</Text>
           </View>
-          <View>
+          <View style={styles.inputView}>
               <TextInput
                   style={styles.input}
                     placeholder={'Login'}
-                    placeholderTextColor={'white'}
+                    selectionColor={'#00d8ff'}
+                    placeholderTextColor={'rgba(255, 255, 255, 0.4)'}
                     underlineColorAndroid='transparent'        
+                />
+          </View>
+          <View style={styles.inputView}>
+              <TextInput
+                  style={styles.input}
+                    placeholder={'Password'}
+                    selectionColor={'#00d8ff'}
+                    secureTextEntry={true}
+                    placeholderTextColor={'rgba(255, 255, 255, 0.4)'}
+                    underlineColorAndroid='transparent'   
+                         
                 />
           </View>
       </ImageBackground>
@@ -44,28 +56,35 @@ const styles = StyleSheet.create({
   },
   logoView: {
     alignItems: 'center',
+    marginBottom: 20,
   },
   logo: {
     width: 150,
     height: 150,
   },
   logoText: {
-    color: 'white',
-    fontSize: 35,
-    opacity: 0.6,
-    fontWeight: '500',
-    
+    color: '#00d8ff',
+    fontSize: 20,
+    opacity: 0.8,
+    fontWeight: '800',
   },
+  inputView: {
+    marginTop: 10,
+  },
+
   input: {
     width: WIDTH - 30,
     height: 55,
     borderRadius: 35,
-    fontSize: 30,
+    fontSize: 25,
+    fontWeight: '100',
     paddingLeft: 50,
     padding: 10,
-    backgroundColor: '#141414',
-    opacity: 0.5,
-    color: 'white',
+    opacity: 0.6,
+    color: '#00d8ff', 
+    backgroundColor: '#424242',
+    borderColor: '#0d0d0d',
+    borderWidth: 3,
   },
 });
 
