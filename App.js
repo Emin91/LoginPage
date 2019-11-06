@@ -9,6 +9,7 @@ import {
   ImageBackground,
   TextInput,
   Dimensions,
+  TouchableOpacity,
 } from 'react-native'
 
 const {width: WIDTH} = Dimensions.get('window')
@@ -23,6 +24,8 @@ export default class App extends Component {
               <Text style={styles.logoText}>LOGIN PAGE</Text>
           </View>
           <View style={styles.inputView}>
+             <Image style={styles.inputIcon}
+                source={require('./images/avatar.png')}/>
               <TextInput
                   style={styles.input}
                     placeholder={'Login'}
@@ -32,15 +35,20 @@ export default class App extends Component {
                 />
           </View>
           <View style={styles.inputView}>
+              <Image style={styles.inputIcon}
+                source={require('./images/key.png')}/>
               <TextInput
                   style={styles.input}
                     placeholder={'Password'}
                     selectionColor={'#00d8ff'}
                     secureTextEntry={true}
                     placeholderTextColor={'rgba(255, 255, 255, 0.4)'}
-                    underlineColorAndroid='transparent'   
-                         
-                />
+                    underlineColorAndroid='transparent'/>
+              <TouchableOpacity style={styles.btnShowPass}>
+                 <Image
+                    style={styles.btnShowPassIcon}
+                    source={require('./images/show-password.png')}/>
+             </TouchableOpacity>
           </View>
       </ImageBackground>
     );
@@ -71,20 +79,35 @@ const styles = StyleSheet.create({
   inputView: {
     marginTop: 10,
   },
-
   input: {
     width: WIDTH - 30,
     height: 55,
     borderRadius: 35,
     fontSize: 25,
     fontWeight: '100',
-    paddingLeft: 50,
-    padding: 10,
+    paddingLeft: 65,
+    padding: 15,
     opacity: 0.6,
     color: '#00d8ff', 
     backgroundColor: '#424242',
     borderColor: '#0d0d0d',
     borderWidth: 3,
+  },
+  inputIcon: {
+    width: 30,
+    height: 30,
+    position: 'absolute',
+    top: 10,
+    left: 20,
+  },
+  btnShowPass: {
+    position: 'absolute',
+    top: 10,
+    right: 20,
+  },
+  btnShowPassIcon: {
+    width: 30,
+    height: 30,
   },
 });
 
